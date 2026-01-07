@@ -92,7 +92,7 @@ const App: React.FC = () => {
         />;
     }
 
-    return <LevelSelector onLevelSelect={handleLevelSelect} />;
+    return <LevelSelector />;
   }
 
   return (
