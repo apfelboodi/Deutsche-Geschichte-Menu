@@ -1,0 +1,5 @@
+{
+  "name": "Deutsche Geschichte",
+  "description": "An application to improve German reading skills (Lesen) for learners at levels A1 to C1. Users can select their level, choose from 100 story topics, read stories with level-appropriate grammar and vocabulary, listen to the audio narration, and view the Persian translation.",
+  "requestFramePermissions": []
+}
