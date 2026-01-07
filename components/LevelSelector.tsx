@@ -3,11 +3,17 @@ import React from 'react';
 import { LEVELS, LEVEL_STYLES } from '../constants';
 import type { Level } from '../types';
 
-interface LevelSelectorProps {
-  onLevelSelect: (level: Level) => void;
-}
+// This component no longer needs props as it navigates externally.
+interface LevelSelectorProps {}
 
-const LevelSelector: React.FC<LevelSelectorProps> = ({ onLevelSelect }) => {
+const LEVEL_URLS: Record<Level, string> = {
+  A1: 'https://apfel.ir/geschichten-a1',
+  A2: 'https://apfel.ir/geschichten-a2',
+  B1: 'https://apfel.ir/geschichten-b1',
+  B2: 'https://apfel.ir/geschichten-b2',
+};
+
+const LevelSelector: React.FC<LevelSelectorProps> = () => {
   return (
     <div className="text-center p-4 pt-8 md:pt-12">
       <img 
@@ -22,14 +28,15 @@ const LevelSelector: React.FC<LevelSelectorProps> = ({ onLevelSelect }) => {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
         {LEVELS.map((level) => {
           const styles = LEVEL_STYLES[level];
+          const url = LEVEL_URLS[level];
           return (
-            <button
+            <a
               key={level}
-              onClick={() => onLevelSelect(level)}
-              className={`p-6 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transform transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-opacity-50 border-2 font-bold ${styles.bg} ${styles.hoverBg} ${styles.text} ${styles.border} ${styles.ring}`}
+              href={url}
+              className={`block text-center p-6 rounded-xl shadow-md hover:shadow-lg hover:-translate-y-1 transform transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-opacity-50 border-2 font-bold ${styles.bg} ${styles.hoverBg} ${styles.text} ${styles.border} ${styles.ring}`}
             >
               <span className="text-4xl">{level}</span>
-            </button>
+            </a>
           )
         })}
       </div>
