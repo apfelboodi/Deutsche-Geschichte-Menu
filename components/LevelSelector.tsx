@@ -14,7 +14,19 @@ const LEVEL_URLS: Record<Level, string> = {
 
 const LevelSelector: React.FC<LevelSelectorProps> = () => {
   const handleLevelClick = (url: string) => {
-    window.location.href = url;
+    // This explicitly tells the browser to change the URL of the top-level window,
+    // which is the correct way to break out of an iframe.
+    try {
+      if (window.top) {
+        window.top.location.href = url;
+      } else {
+        window.location.href = url;
+      }
+    } catch (e) {
+      console.error("Navigation failed:", e);
+      // Fallback for extreme cases
+      window.location.href = url;
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>, url: string) => {
